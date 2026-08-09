@@ -8,31 +8,39 @@ public class Primos {
     // há um teorema que diz que para definir se um número é primo ou não
     // basta dividir por todos os números primos abaixo da raíz quadrada desse número
 
-    // função primos recursiva
-    public void primosRecursiva(int n, int contador, ArrayList<Integer> listaPrimos){
+    // função que é chamada pela main (ela faz apenas uma checagem inicial e após isso o método recursivo é aplicado)
+    public ArrayList<Integer> primosRecursiva(int n){
+        ArrayList<Integer> listaPrimos = new ArrayList<>();
         if (!(n > 1)) { // tratando caso em que n não é maior que 1
             System.out.println("Valor n deve ser maior que 1 (n > 1)");
-            return;
+            return listaPrimos;
         }
+        // adicionando o 2 pois o método "boolean primo" abaixo não considera a tentativa do valor 2
+        listaPrimos.add(2);
+        buscaRecursivaPrimos(n, 3, listaPrimos); // aplicando a função recursiva
+        return listaPrimos;
+    }
+
+    // função primos recursiva
+    public void buscaRecursivaPrimos(int n, int contador, ArrayList<Integer> listaPrimos){
         if (contador > n) return;
-        if (primo(contador, 0)) listaPrimos.addLast(contador);
-        primosRecursiva(n, contador+1, listaPrimos);
+        if (primo(contador, 3)) listaPrimos.addLast(contador);
+        buscaRecursivaPrimos(n, contador+2, listaPrimos); // pulando de 2 em 2 (já que pares não são primos)
     }
 
     // função para verificar se determinado número é primo
     public boolean primo(int n, int contador){
-        if (n % 2 == 0 && n != 2) return false; // se é par diferente de 2 não é primo
-        if (contador == 0) contador = n-1;  // indicativo que esta função recursiva é a primeira a ser executada (no caso definindo valor inicial de contador)
-        if (contador * contador < n) return true; // já passei por todos os contadores e cheguei até a raíz quadrada de n, sendo assim não tendo nenhum divisor
+        if (contador * contador > n) return true; // já passei por todos os contadores e passei da raíz quadrada de n, sendo assim não tendo nenhum divisor
         if (n % contador == 0) return false; // achei um divisor
-        return primo(n, contador-1);
+        return primo(n, contador+2); // passando contador+2 para ignorar valores pares
     }
 
     // função primos linear
-    public void primosLinear(int n, ArrayList<Integer> listaPrimos){
+    public ArrayList<Integer> primosLinear(int n){
+        ArrayList<Integer> listaPrimos = new ArrayList<>();
         if (!(n > 1)) { // tratando caso em que n não é maior que 1
             System.out.println("Valor n deve ser maior que 1 (n > 1)");
-            return;
+            return listaPrimos;
         }
         listaPrimos.addLast(2); // adicionando o primeiro valor primo
         int contador = 3;
@@ -50,5 +58,6 @@ public class Primos {
             if (primo) listaPrimos.add(contador); // adiciona a lista somente se não encontrou nenhum número divisível
             contador += 2; // somando de dois em dois para não perder tempo verificando números pares
         }
+        return listaPrimos;
     }
 }

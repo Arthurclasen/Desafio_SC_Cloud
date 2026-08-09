@@ -1,28 +1,38 @@
 package fibonacci;
 
-import java.util.ArrayList;
-
 public class Fibonacci {
 
     // função fibonacci recursiva
-    public int fibonacciRecursiva(int n){
+    public long fibonacciRecursiva(int n){
+        if (n < 0) {
+            System.out.println("Valor n deve ser no mínimo 0 (n >= 0)");
+            return 0L;
+        }
         if (n == 0 || n == 1) return n; // tratando casos exclusivos
         return fibonacciRecursiva(n-1) + fibonacciRecursiva(n-2); // chama recursivamente os dois termos anteriores da sequência
     }
 
     // função fibonacci linear
-    public int fibonacciLinear(int n){
-        ArrayList<Integer> valoresFibonnaci = new ArrayList<>(); // lista com valores fibonnaci
+    public long fibonacciLinear(int n){
+        if (n < 0) {
+            System.out.println("Valor n deve ser no mínimo 0 (n >= 0)");
+            return 0L;
+        }
+        if (n == 0) return 0L;
         // adicionando os 1° e 2°  elementos
-        valoresFibonnaci.addLast(0);
-        valoresFibonnaci.addLast(1);
+        long penultimo = 0L;
+        long ultimo = 1L;
+        long temp;
         int contador = 2; // contando a partir do 2° elemento (que não está no caso exclusivo)
+        // realizando a soma entre o último e penúltimo elemento do fibonacci n vezes
         while (contador <= n) {
-            // adicionando no vetor os valores do penúltimo e último elemento
-            valoresFibonnaci.addLast(valoresFibonnaci.get(contador-1) + valoresFibonnaci.get(contador-2));
+            temp = ultimo + penultimo;
+            penultimo = ultimo;
+            ultimo = temp;
             contador++;
         }
         // retorna o n-ésimo termo da sequência
-        return valoresFibonnaci.get(n);
+        //return valoresFibonnaci.get(1);
+        return ultimo;
     }
 }

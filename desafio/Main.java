@@ -26,10 +26,8 @@ public class Main {
         Primos primos = new Primos();
 
         if (algoritmo.equals("primos")) {
-            ArrayList<Integer> listaPrimos = new ArrayList<>();
-            if (tipo.equals("linear")) primos.primosLinear(n, listaPrimos);
-            else if (tipo.equals("recursiva")) primos.primosRecursiva(n, 2, listaPrimos);
-            System.out.println("p(" + n + ") = " + listaPrimos);
+            if (tipo.equals("linear")) System.out.println("p(" + n + ") = " + primos.primosLinear(n));
+            else if (tipo.equals("recursiva")) System.out.println("p(" + n + ") = " + primos.primosRecursiva(n));
         }
 
         if (algoritmo.equals("fibonacci")) {
