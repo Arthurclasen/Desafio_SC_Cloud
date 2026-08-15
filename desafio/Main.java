@@ -26,11 +26,19 @@ public class Main {
         Primos primos = new Primos();
 
         if (algoritmo.equals("primos")) {
+            if (!(n > 1)) { // tratando caso em que n não é maior que 1
+                System.out.println("Valor n deve ser maior que 1 (n > 1)");
+                return;
+            }
             if (tipo.equals("linear")) System.out.println("p(" + n + ") = " + primos.primosLinear(n));
             else if (tipo.equals("recursiva")) System.out.println("p(" + n + ") = " + primos.primosRecursiva(n));
         }
 
         if (algoritmo.equals("fibonacci")) {
+            if (n < 0) {
+                System.out.println("Valor n deve ser no mínimo 0 (n >= 0)");
+                return;
+            }
             if (tipo.equals("linear")) System.out.println("fib(" + n + ") = " + fibonacci.fibonacciLinear(n));
             else if (tipo.equals("recursiva")) System.out.println("fib(" + n + ") = " + fibonacci.fibonacciRecursiva(n));
         }

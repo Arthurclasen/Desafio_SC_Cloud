@@ -11,10 +11,6 @@ public class Primos {
     // função que é chamada pela main (ela faz apenas uma checagem inicial e após isso o método recursivo é aplicado)
     public ArrayList<Integer> primosRecursiva(int n){
         ArrayList<Integer> listaPrimos = new ArrayList<>();
-        if (!(n > 1)) { // tratando caso em que n não é maior que 1
-            System.out.println("Valor n deve ser maior que 1 (n > 1)");
-            return listaPrimos;
-        }
         // adicionando o 2 pois o método "boolean primo" abaixo não considera a tentativa do valor 2
         listaPrimos.add(2);
         buscaRecursivaPrimos(n, 3, listaPrimos); // aplicando a função recursiva
@@ -38,10 +34,6 @@ public class Primos {
     // função primos linear
     public ArrayList<Integer> primosLinear(int n){
         ArrayList<Integer> listaPrimos = new ArrayList<>();
-        if (!(n > 1)) { // tratando caso em que n não é maior que 1
-            System.out.println("Valor n deve ser maior que 1 (n > 1)");
-            return listaPrimos;
-        }
         listaPrimos.addLast(2); // adicionando o primeiro valor primo
         int contador = 3;
         boolean primo; // variável que indica se o número atual continua sendo considerado primo
